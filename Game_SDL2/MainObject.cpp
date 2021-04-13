@@ -1,5 +1,6 @@
 ﻿#include"MainObject.h"
 
+//Khởi tạo giá trị ban đầu cho nhân vật
 MainObject::MainObject()
 {
 	rect_.x = 0;
@@ -28,6 +29,11 @@ void MainObject::handleInputAction(SDL_Event event)
 		case SDLK_LEFT:
 			x_val -= WIDTH_MAIN_OBJECT / 3;
 			break;
+		case SDLK_UP:
+			y_val -= WIDTH_MAIN_OBJECT /3;
+			break;
+		case SDLK_DOWN:
+			y_val += WIDTH_MAIN_OBJECT /3;
 		}
 	}
 	else if (event.type == SDL_KEYUP)
@@ -40,6 +46,12 @@ void MainObject::handleInputAction(SDL_Event event)
 		case SDLK_LEFT:
 			x_val += WIDTH_MAIN_OBJECT / 3;
 			break;
+		case SDLK_UP:
+			y_val += WIDTH_MAIN_OBJECT / 3;
+			break;
+		case SDLK_DOWN:
+			y_val -= WIDTH_MAIN_OBJECT / 3;
+			break;
 		}
 	}
 }
@@ -49,6 +61,7 @@ void MainObject::Move()
 {
 	int edge = 10;
 	rect_.x += x_val;
+	rect_.y += y_val;
 	if (rect_.x < 0)
 	{
 		rect_.x = edge;
@@ -56,5 +69,13 @@ void MainObject::Move()
 	else if (rect_.x + WIDTH_MAIN_OBJECT > WIDTH_RACE - edge)
 	{
 		rect_.x = WIDTH_RACE - WIDTH_MAIN_OBJECT - edge;
+	}
+	if (rect_.y + HEIGHT_MAIN_OBJECT > SCREEN_HEIGHT)
+	{
+		rect_.y = SCREEN_HEIGHT - HEIGHT_MAIN_OBJECT;
+	}
+	else if (rect_.y < 0)
+	{
+		rect_.y = 0;
 	}
 }
