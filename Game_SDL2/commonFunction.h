@@ -24,6 +24,7 @@ static SDL_Event g_event;
 static Mix_Chunk *g_sound;
 static Mix_Chunk *g_sound_crash;
 
+//Tạo một namespace chứa các hàm dùng chung 
 namespace commonFun
 {
 	SDL_Surface *LoadImage(std::string file_path);

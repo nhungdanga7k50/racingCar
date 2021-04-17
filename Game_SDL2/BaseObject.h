@@ -2,6 +2,7 @@
 #define BaseObject_H_
 #include"commonFunction.h"
 
+//Tạo một lớp xử lý chung cho nhân vật
 class BaseObject
 {
 public:

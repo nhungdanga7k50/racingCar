@@ -6,6 +6,7 @@
 #define WIDTH_OBSTACLE 60
 #define HEIGHT_OBSTACLE 100
 
+//Tạo một lớp xử lý chướng ngại vật
 class Obstacles :public BaseObject
 {
 public:

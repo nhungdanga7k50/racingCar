@@ -59,6 +59,7 @@ bool commonFun::checkCollision(const SDL_Rect & object1, const SDL_Rect & object
 	return false;	
 }
 
+//Hàm show menu chương trình
 int commonFun::showMenu(SDL_Surface * des, TTF_Font * font)
 {
 	g_background = LoadImage("background.jpg");

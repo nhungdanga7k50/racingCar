@@ -6,6 +6,7 @@
 #define WIDTH_MAIN_OBJECT 60
 #define HEIGHT_MAIN_OBJECT 100
 
+//Tạo một lớp xử lý nhân vật chính
 class MainObject :public BaseObject
 {
 public:

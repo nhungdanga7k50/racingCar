@@ -4,6 +4,7 @@
 #include<string>
 #include<SDL_ttf.h>
 
+//Tạo một lớp text để viết chữ
 class Text : public BaseObject
 {
 public:

@@ -13,6 +13,7 @@ Text::~Text()
 {
 }
 
+//Hàm đặt màu cho font chữ
 void Text::SetColor(const int & type)
 {
 	if (type == RED_TEXT)

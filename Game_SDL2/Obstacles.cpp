@@ -14,7 +14,7 @@ Obstacles::Obstacles()
 Obstacles::~Obstacles()
 {
 }
-
+ //Hàm xử lý di chuyển của chướng ngại vật
 void Obstacles::handleMove()
 {
 	y_val = 15;
