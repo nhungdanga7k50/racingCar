@@ -31,6 +31,7 @@ namespace commonFun
 	void ApplySurface(SDL_Surface *screen, SDL_Surface *des, int x, int y);
 	bool checkCollision(const SDL_Rect &object1, const SDL_Rect &object2);
 	int showMenu(SDL_Surface *des, TTF_Font *font);
+	int showMenu(SDL_Surface *des, TTF_Font *font);
 	void cleanUp();
 }
 

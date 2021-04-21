@@ -64,18 +64,26 @@ int commonFun::showMenu(SDL_Surface * des, TTF_Font * font)
 {
 	g_background = LoadImage("background.jpg");
 	g_race = LoadImage("racing.png");
-	if (g_background == NULL && g_race == NULL)
+	if (g_background == NULL || g_race == NULL)
 	{
 		return 0;
 	}
-	SDL_Rect pos_play;
-	pos_play.x = 300;
-	pos_play.y = 450;
-
+	//Set hai vị trí cho hai text
+	SDL_Rect pos[2];
+	pos[0].x = 140;
+	pos[0].y = 460;
+	pos[1].x = 420;
+	pos[1].y = 460;
+	//Tạo font chữ Play
 	Text text_menu;
 	text_menu.SetText("Play");
 	text_menu.SetColor(Text::WHITE_TEXT);
-	text_menu.SetRect(pos_play.x, pos_play.y);
+	text_menu.SetRect(pos[0].x, pos[0].y);
+	//Tạo font chữ Exit
+	Text exit;
+	exit.SetText("Exit");
+	exit.SetColor(Text::WHITE_TEXT);
+	exit.SetRect(pos[1].x, pos[1].y);
 
 	SDL_Event e;
 	int xm = 0;
@@ -84,6 +92,7 @@ int commonFun::showMenu(SDL_Surface * des, TTF_Font * font)
 	{
 		commonFun::ApplySurface(g_background, des, 0, 0);
 		commonFun::ApplySurface(g_race, des, 210, 50);
+		exit.RenderText(font, des);
 		text_menu.RenderText(font, des);
 		while (SDL_PollEvent(&e) != 0)
 		{
@@ -94,8 +103,7 @@ int commonFun::showMenu(SDL_Surface * des, TTF_Font * font)
 			case SDL_MOUSEMOTION:
 				xm = e.motion.x;
 				ym = e.motion.y;
-				if (xm >= pos_play.x&&xm <= pos_play.x + 40
-					&& ym >= pos_play.y&&ym <= pos_play.y + 20)
+				if (xm >= pos[0].x&&xm <= pos[0].x + 50 && ym >= pos[0].y&&ym <= pos[0].y + 20)
 				{
 					text_menu.SetColor(Text::RED_TEXT);
 				}
@@ -103,12 +111,112 @@ int commonFun::showMenu(SDL_Surface * des, TTF_Font * font)
 				{
 					text_menu.SetColor(Text::WHITE_TEXT);
 				}
+				if (xm >= pos[1].x&&xm <= pos[1].x + 40 && ym >= pos[1].y&&ym <= pos[1].y + 20)
+				{
+					exit.SetColor(Text::RED_TEXT);
+				}
+				else
+				{
+					exit.SetColor(Text::WHITE_TEXT);
+				}
 				break;
 			case SDL_MOUSEBUTTONDOWN:
 				xm = e.button.x;
 				ym = e.button.y;
-				if (xm >= pos_play.x&&xm <= pos_play.x + 40
-					&& ym >= pos_play.y&&ym <= pos_play.y + 20)
+				if (xm >= pos[0].x&&xm <= pos[0].x + 50 && ym >= pos[0].y&&ym <= pos[0].y + 20)
+				{
+					return 1;
+				}
+				if (xm >= pos[1].x&&xm <= pos[1].x + 40 && ym >= pos[1].y&&ym <= pos[1].y + 20)
+				{
+					return 0;
+				}
+				break;
+			default:
+				break;
+			}
+		}
+		SDL_Flip(des);
+	}
+	return 0;
+}
+//Hàm xử lý lựa chọn của người chơi
+int commonFun::choose(SDL_Surface * des, TTF_Font * font)
+{
+	gameOver = commonFun::LoadImage("gameOver.png");
+	if (gameOver == NULL)
+	{
+		return 0;
+	}
+	//Set ba vị trí cho text
+	SDL_Rect pos[3];
+	pos[0].x = 250;
+	pos[0].y = 420;
+	pos[1].x = 160;
+	pos[1].y = 480;
+	pos[2].x = 380;
+	pos[2].y = 480;
+	//Tạo font score
+	Text score;
+	score.SetColor(Text::RED_TEXT);
+	score.SetRect(pos[0].x, pos[0].y);
+	std::string score_val = std::to_string(Score);
+	std::string strScore("Score: ");
+	strScore += score_val;
+	score.SetText(strScore);
+	//Tạo font exit
+	Text exit;
+	exit.SetText("Exit");
+	exit.SetColor(Text::WHITE_TEXT);
+	exit.SetRect(pos[1].x, pos[1].y);
+	//Tạo font playAgain
+	Text playAgain;
+	playAgain.SetText("Play Again");
+	playAgain.SetColor(Text::WHITE_TEXT);
+	playAgain.SetRect(pos[2].x, pos[2].y);
+
+	SDL_Event e;
+	int xm = 0, ym = 0;
+	while (true)
+	{
+		commonFun::ApplySurface(gameOver, des, 0, 0);
+		score.RenderText(font, des);
+		exit.RenderText(font, des);
+		playAgain.RenderText(font, des);
+		while (SDL_PollEvent(&e) != 0)
+		{
+			switch (e.type)
+			{
+			case SDL_QUIT:
+				return 0;
+			case SDL_MOUSEMOTION:
+				xm = e.motion.x;
+				ym = e.motion.y;
+				if (xm >= pos[1].x&&xm <= pos[1].x + 50 && ym >= pos[1].y&&ym <= pos[1].y + 20)
+				{
+					exit.SetColor(Text::RED_TEXT);
+				}
+				else
+				{
+					exit.SetColor(Text::WHITE_TEXT);
+				}
+				if (xm >= pos[2].x&&xm <= pos[2].x + 140 && ym >= pos[2].y&&ym <= pos[2].y + 20)
+				{
+					playAgain.SetColor(Text::RED_TEXT);
+				}
+				else
+				{
+					playAgain.SetColor(Text::WHITE_TEXT);
+				}
+				break;
+			case SDL_MOUSEBUTTONDOWN:
+				xm = e.button.x;
+				ym = e.button.y;
+				if (xm >= pos[1].x&&xm <= pos[1].x + 50 && ym >= pos[1].y&&ym <= pos[1].y + 20)
+				{
+					return 0;
+				}
+				if (xm >= pos[2].x&&xm <= pos[2].x + 140 && ym >= pos[2].y&&ym <= pos[2].y + 20)
 				{
 					return 1;
 				}
@@ -121,7 +229,6 @@ int commonFun::showMenu(SDL_Surface * des, TTF_Font * font)
 	}
 	return 0;
 }
-
 // Hàm giải phóng các phần tử
 void commonFun::cleanUp()
 {
