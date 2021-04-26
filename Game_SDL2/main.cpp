@@ -1,8 +1,9 @@
-﻿#include<iostream>
+#include<iostream>
 #include"commonFunction.h"
 #include"MainObject.h"
 #include"Obstacles.h"
 #include"Text.h"
+
 #undef main
 using namespace std;
 
@@ -46,7 +47,10 @@ int main(int argc, char *argv[])
 	{
 		return 0;
 	}
+	//Khởi tạo các biến điều chỉnh vòng lặp
 	bool is_quit = false;
+	bool is_collision = false;
+	UINT32 startTime = 0;
 	//Show ảnh nền
 	int menu = commonFun::showMenu(g_screen, g_text);
 	if (menu == 0)
@@ -57,7 +61,6 @@ int main(int argc, char *argv[])
 	int chooseplay = 1;
 	do
 	{
-		bool is_collision = false;
 		// Load ảnh đường đua của game
 		g_bground1 = commonFun::LoadImage("race.png");
 		g_bground2 = commonFun::LoadImage("Menu.png");
@@ -164,15 +167,13 @@ int main(int argc, char *argv[])
 			level.RenderText(g_text, g_screen);
 			//Hiển thị thời gian
 			std::string strTime("Time: ");
-			UINT32 time_val = SDL_GetTicks() / 1000;
-			std::string val_time = std::to_string(time_val);
+			std::string val_time = std::to_string(SDL_GetTicks() / 1000 - startTime);
 			strTime += val_time;
 			time.SetText(strTime);
 			time.SetRect(500, 200);
 			time.RenderText(g_text, g_screen);
-			// Hiển thị quãng đường 
-			addScore = time_val * 15;
-			Score = addScore;
+			// Hiển thị điểm
+			addScore = (SDL_GetTicks() / 1000 - startTime) * 15;
 			std::string val_score = std::to_string(addScore);
 			std::string strScore("Score: ");
 			strScore += val_score;
@@ -187,10 +188,11 @@ int main(int argc, char *argv[])
 		}
 		delete[] p_obstacles;
 		commonFun::cleanUp();
-		//Khởi tạo lại biến điều khiển vòng lặp
+		//Đặt lại giá trị cho biến điều khiển vòng lặp
 		is_quit = false;
+		is_collision = false;
 		//Show menu chương trình khi thua
-		int is_choose = commonFun::choose(g_screen, g_text);
+		int is_choose = commonFun::choose(g_screen, g_text, addScore);
 		SDL_Flip(g_screen);
 		if (is_choose == 0)
 		{
@@ -200,8 +202,10 @@ int main(int argc, char *argv[])
 		else
 		{
 			chooseplay = 1;
+			startTime = SDL_GetTicks() / 1000;
 		}
 	} while (chooseplay != 0);
+	TTF_Quit();
 	SDL_Quit();
 	return 1;
 }
