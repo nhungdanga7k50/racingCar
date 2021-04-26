@@ -1,6 +1,6 @@
 #include "Obstacles.h"
 
-
+//Khởi tạo giá trị ban đầu cho chướng ngại vật
 Obstacles::Obstacles()
 {
 	rect_.x = SCREEN_WIDTH / 3;
