@@ -22,16 +22,15 @@ static SDL_Surface *g_bground1 = NULL;
 static SDL_Surface *g_bground2 = NULL;
 static SDL_Event g_event;
 static Mix_Chunk *g_sound;
-static Mix_Chunk *g_sound_crash;
 
-//Tạo một namespace chứa các hàm dùng chung 
+
 namespace commonFun
 {
 	SDL_Surface *LoadImage(std::string file_path);
 	void ApplySurface(SDL_Surface *screen, SDL_Surface *des, int x, int y);
 	bool checkCollision(const SDL_Rect &object1, const SDL_Rect &object2);
 	int showMenu(SDL_Surface *des, TTF_Font *font);
-	int showMenu(SDL_Surface *des, TTF_Font *font);
+	int choose(SDL_Surface *des, TTF_Font *font, int addScore);
 	void cleanUp();
 }
 
