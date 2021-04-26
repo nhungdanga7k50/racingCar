@@ -64,8 +64,7 @@ int main(int argc, char *argv[])
 		// Load ảnh đường đua của game
 		g_bground1 = commonFun::LoadImage("race.png");
 		g_bground2 = commonFun::LoadImage("menu.png");
-		gameOver = commonFun::LoadImage("gameOver.png");
-		if (g_bground1 == NULL || g_bground2 == NULL || gameOver == NULL)
+		if (g_bground1 == NULL || g_bground2 == NULL)
 		{
 			return 0;
 		}
