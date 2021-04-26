@@ -6,7 +6,7 @@
 
 {
 
-  This game can be runned on visual studio, codeblock, and other apps but the best is still visual studio.
+  This game can be runned on visual studio, codeblock, and other apps but you should use visual studio.
   
   It was written in c++ language and used SDL2.
   
@@ -24,7 +24,7 @@
 
 {
 
-  The Car of the player is run oposite other cars.
+  The Car of the player runs oposite other cars.
   
   Use arrows up, down, right, left to adjust your car to avoid other cars.
   
