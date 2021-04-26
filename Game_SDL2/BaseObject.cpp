@@ -1,5 +1,5 @@
 #include"BaseObject.h"
-
+//Khởi tạo giá trị ban đầu cho nhân vật
 BaseObject::BaseObject()
 {
 	rect_.x = 0;
