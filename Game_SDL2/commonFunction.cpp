@@ -1,4 +1,4 @@
-﻿#include"commonFunction.h"
+#include"commonFunction.h"
 #include"Text.h"
 
 // Hàm load ảnh từ đường dẫn cho trước
@@ -32,15 +32,16 @@ void commonFun::ApplySurface(SDL_Surface *screen, SDL_Surface *des, int x, int y
 // Hàm xử lý khi va chạm xảy ra
 bool commonFun::checkCollision(const SDL_Rect & object1, const SDL_Rect & object2)
 {
-	int left1 = object1.x + 10;
-	int right1 = object1.x + object1.w - 10;
+	//Các biến lấy tọa độ của object 1
+	int left1 = object1.x + 5;
+	int right1 = object1.x + object1.w - 5;
 	int head1 = object1.y + object1.h - 5;
-	int bottom1 = object1.y;
-
-	int left2 = object2.x + 10;
-	int right2 = object2.x + object2.w - 10;
+	int bottom1 = object1.y + 5;
+	//Các biến lấy tọa độ của object 2
+	int left2 = object2.x + 5;
+	int right2 = object2.x + object2.w - 5;
 	int head2 = object2.y + object2.h - 5;
-	int bottom2 = object2.y;
+	int bottom2 = object2.y + 5;
 
 	if (left1 >= left2 && left1 <= right2 )
 	{
@@ -59,7 +60,7 @@ bool commonFun::checkCollision(const SDL_Rect & object1, const SDL_Rect & object
 	return false;	
 }
 
-//Hàm show menu chương trình
+//Hàm show menu game
 int commonFun::showMenu(SDL_Surface * des, TTF_Font * font)
 {
 	g_background = LoadImage("background.jpg");
@@ -141,7 +142,7 @@ int commonFun::showMenu(SDL_Surface * des, TTF_Font * font)
 	return 0;
 }
 //Hàm xử lý lựa chọn của người chơi
-int commonFun::choose(SDL_Surface * des, TTF_Font * font)
+int commonFun::choose(SDL_Surface * des, TTF_Font * font, int addScore)
 {
 	gameOver = commonFun::LoadImage("gameOver.png");
 	if (gameOver == NULL)
@@ -160,7 +161,7 @@ int commonFun::choose(SDL_Surface * des, TTF_Font * font)
 	Text score;
 	score.SetColor(Text::RED_TEXT);
 	score.SetRect(pos[0].x, pos[0].y);
-	std::string score_val = std::to_string(Score);
+	std::string score_val = std::to_string(addScore);
 	std::string strScore("Score: ");
 	strScore += score_val;
 	score.SetText(strScore);
@@ -229,6 +230,7 @@ int commonFun::choose(SDL_Surface * des, TTF_Font * font)
 	}
 	return 0;
 }
+
 // Hàm giải phóng các phần tử
 void commonFun::cleanUp()
 {
