@@ -33,15 +33,15 @@ void commonFun::ApplySurface(SDL_Surface *screen, SDL_Surface *des, int x, int y
 bool commonFun::checkCollision(const SDL_Rect & object1, const SDL_Rect & object2)
 {
 	//Các biến lấy tọa độ của object 1
-	int left1 = object1.x + 5;
-	int right1 = object1.x + object1.w - 5;
-	int head1 = object1.y + object1.h - 5;
-	int bottom1 = object1.y + 5;
+	int left1 = object1.x + 3;
+	int right1 = object1.x + object1.w - 3;
+	int head1 = object1.y + object1.h - 3;
+	int bottom1 = object1.y + 3;
 	//Các biến lấy tọa độ của object 2
-	int left2 = object2.x + 5;
-	int right2 = object2.x + object2.w - 5;
-	int head2 = object2.y + object2.h - 5;
-	int bottom2 = object2.y + 5;
+	int left2 = object2.x + 3;
+	int right2 = object2.x + object2.w - 3;
+	int head2 = object2.y + object2.h - 3;
+	int bottom2 = object2.y + 3;
 
 	if (left1 >= left2 && left1 <= right2 )
 	{
