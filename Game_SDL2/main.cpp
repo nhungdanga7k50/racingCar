@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
 	int menu = commonFun::showMenu(g_screen, g_text);
 	if (menu == 0)
 	{
-		is_quit = true;
+		return 0;
 	}
 	//Tạo vòng lặp do_while để điều chỉnh lựa chọn
 	int chooseplay = 1;
