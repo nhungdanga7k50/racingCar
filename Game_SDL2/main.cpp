@@ -62,8 +62,8 @@ int main(int argc, char *argv[])
 	do
 	{
 		// Load ảnh đường đua của game
-		g_bground1 = commonFun::LoadImage("race.png");
-		g_bground2 = commonFun::LoadImage("menu.png");
+		g_bground1 = commonFun::LoadImage("image/race.png");
+		g_bground2 = commonFun::LoadImage("image/menu.png");
 		if (g_bground1 == NULL || g_bground2 == NULL)
 		{
 			return 0;
@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
 		// Load xe của người chơi
 		MainObject myCar;
 		myCar.SetRect(200, 400);
-		bool is_load = myCar.LoadImg("mycar1.png");
+		bool is_load = myCar.LoadImg("image/mycar1.png");
 		if (is_load == false)
 		{
 			return 0;
@@ -94,11 +94,11 @@ int main(int argc, char *argv[])
 				int choice = rand() % 3;
 				switch (choice)
 				{
-				case 0: is_load = p_obstacle->LoadImg("greencar.png");
+				case 0: is_load = p_obstacle->LoadImg("image/greencar.png");
 					break;
-				case 1: is_load = p_obstacle->LoadImg("redcar.png");
+				case 1: is_load = p_obstacle->LoadImg("image/redcar.png");
 					break;
-				case 2: is_load = p_obstacle->LoadImg("bluecar.png");
+				case 2: is_load = p_obstacle->LoadImg("image/bluecar.png");
 					break;
 				}
 				if (is_load == false)
