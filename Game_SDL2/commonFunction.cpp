@@ -63,8 +63,8 @@ bool commonFun::checkCollision(const SDL_Rect & object1, const SDL_Rect & object
 //Hàm show menu game
 int commonFun::showMenu(SDL_Surface * des, TTF_Font * font)
 {
-	g_background = LoadImage("background.jpg");
-	g_race = LoadImage("racing.png");
+	g_background = LoadImage("image/background.jpg");
+	g_race = LoadImage("image/racing.png");
 	if (g_background == NULL || g_race == NULL)
 	{
 		return 0;
@@ -144,7 +144,7 @@ int commonFun::showMenu(SDL_Surface * des, TTF_Font * font)
 //Hàm xử lý lựa chọn của người chơi
 int commonFun::choose(SDL_Surface * des, TTF_Font * font, int addScore)
 {
-	gameOver = commonFun::LoadImage("gameOver.png");
+	gameOver = commonFun::LoadImage("image/gameOver.png");
 	if (gameOver == NULL)
 	{
 		return 0;
